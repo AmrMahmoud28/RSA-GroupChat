@@ -235,13 +235,19 @@ public class Room extends Thread implements Initializable {
     private String fromIntToChar(int[] plaintextIndexs) {
         char[] characters = getCharacters();
         StringBuilder plaintext = new StringBuilder();
+        boolean isFound = false;
 
         for (int i = 0; i < plaintextIndexs.length; i++) {
+            isFound = false;
             for (int j = 0; j < characters.length; j++) {
                 if (plaintextIndexs[i] == j) {
                     plaintext.append(characters[j]);
+                    isFound = true;
                     break;
                 }
+            }
+            if (!isFound){
+                plaintext.append(plaintextIndexs[i]);
             }
         }
 
