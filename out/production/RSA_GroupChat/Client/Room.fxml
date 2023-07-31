@@ -122,6 +122,11 @@
                         <Font name="Arial" size="19.0" />
                     </font>
                 </Label>
+                <Label fx:id="clientKey" layoutX="79.0" layoutY="35.0" prefHeight="24.0" prefWidth="93.0" text="Public Key" textFill="#c1ffbf" wrapText="true">
+                    <font>
+                        <Font name="Arial" size="17.0" />
+                    </font>
+                </Label>
                 <Button fx:id="profileBtn" layoutX="257.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleProfileBtn" styleClass="allButton" stylesheets="@../Css/style.css" text="Profile">
                     <font>
                         <Font name="Arial" size="15.0" />

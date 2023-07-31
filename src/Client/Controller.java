@@ -96,7 +96,7 @@ public class Controller {
             }
         } else {
             controlRegLabel.setOpacity(1);
-            setOpacity(success, goBack);
+            setOpacity(success, goBack, generatedPublicKey, generatedPrivateKey);
         }
     }
 
@@ -105,25 +105,29 @@ public class Controller {
         int q = generateRandomPrimeNumber();
         int n = p * q;
 
-        while (!checkKey(n)){
-            p = generateRandomPrimeNumber();
-            q = generateRandomPrimeNumber();
-            n = p * q;
-        }
-
         int phiN = (p - 1) * (q - 1);
         int e = getE(phiN);
         int d = getD(phiN, e);
+
+        while (!checkKey(n) || e == d || p == q){
+            p = generateRandomPrimeNumber();
+            q = generateRandomPrimeNumber();
+            n = p * q;
+
+            phiN = (p - 1) * (q - 1);
+            e = getE(phiN);
+            d = getD(phiN, e);
+        }
 
         return new int[]{n, e, d};
     }
 
     private int generateRandomPrimeNumber(){
         Random random = new Random();
-        int prime = random.nextInt(100) + 1;
+        int prime = random.nextInt(50) + 1;
 
         while (!isPrime(prime)){
-            prime = random.nextInt(100) + 1;
+            prime = random.nextInt(50) + 1;
         }
         return prime;
     }
@@ -132,7 +136,7 @@ public class Controller {
         if(num <= 1){
             return false;
         }
-        for (int i = 2; i < Math.sqrt(num); i++) {
+        for (int i = 2; i < num; i++) {
             if(num % i == 0){
                 return false;
             }
@@ -178,10 +182,12 @@ public class Controller {
         return d;
     }
 
-    private void setOpacity(Label a, Label b) {
-        if(a.getOpacity() == 1 || b.getOpacity() == 1) {
+    private void setOpacity(Label a, Label b, Label c, Label d) {
+        if(a.getOpacity() == 1 || b.getOpacity() == 1 || c.getOpacity() == 1 || d.getOpacity() == 1) {
             a.setOpacity(0);
             b.setOpacity(0);
+            c.setOpacity(0);
+            d.setOpacity(0);
         }
     }
 
@@ -197,18 +203,6 @@ public class Controller {
 
 
     public void login() {
-//        testUser.fullName = "Amr Mahmoud";
-//        testUser.n = 77;
-//        testUser.privateKey = 43;
-//        testUser.publicKey = 7;
-//        users.add(testUser);
-//
-//        test1User.fullName = "Ahmed Bass";
-//        test1User.n = 33;
-//        test1User.privateKey = 7;
-//        test1User.publicKey = 3;
-//        users.add(test1User);
-
         d = privateKey.getText().replaceAll(" ", "").split(",")[0];
         n = privateKey.getText().replaceAll(" ", "").split(",")[1];
         boolean login = false;

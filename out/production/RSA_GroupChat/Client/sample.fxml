@@ -54,17 +54,17 @@
                                 <Font size="28.0" />
                             </font>
                         </Label>
-                        <Button layoutX="59.0" layoutY="377.0" mnemonicParsing="false" onAction="#registration" prefHeight="35.0" prefWidth="208.0" style="-fx-background-radius: 90; -fx-background-color: #718792;" styleClass="btnLogin" stylesheets="@../Css/style.css" text="Create Account" textFill="#004c40">
+                        <Button layoutX="59.0" layoutY="377.0" mnemonicParsing="false" onAction="#registration" prefHeight="35.0" prefWidth="208.0" style="-fx-background-radius: 90; -fx-background-color: #718792;" styleClass="btnLogin" stylesheets="@../Css/style.css" text="Generate Key" textFill="#004c40">
                             <font>
                                 <Font name="Beirut Regular" size="18.0" />
                             </font>
                         </Button>
-                        <Label layoutX="68.0" layoutY="489.0" text="Already Have an Account?" textFill="#dad7d7">
+                        <Label layoutX="80.0" layoutY="480.0" text="Already Have a Key?" textFill="#dad7d7">
                             <font>
                                 <Font size="19.0" />
                             </font>
                         </Label>
-                        <Button fx:id="getStarted" layoutX="108.0" layoutY="517.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="27.0" prefWidth="126.0" style="-fx-background-color: #718792; -fx-background-radius: 90;" styleClass="btnLogin" stylesheets="@../Css/style.css" text="Log In Here" textFill="#004c40">
+                        <Button fx:id="getStarted" layoutX="100.0" layoutY="517.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="27.0" prefWidth="126.0" style="-fx-background-color: #718792; -fx-background-radius: 90;" styleClass="btnLogin" stylesheets="@../Css/style.css" text="Log In Here" textFill="#004c40">
                             <font>
                                 <Font size="14.0" />
                             </font>
@@ -141,12 +141,12 @@
                                 <Font name="Beirut Regular" size="18.0" />
                             </font>
                         </Button>
-                        <Label layoutX="78.0" layoutY="455.0" text="Don't Have an Account?" textFill="#d7d7d7">
+                        <Label layoutX="88.0" layoutY="455.0" text="Don't Have a Key?" textFill="#d7d7d7">
                             <font>
                                 <Font size="19.0" />
                             </font>
                         </Label>
-                        <Button fx:id="btnSignUp" layoutX="113.0" layoutY="490.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="28.0" prefWidth="112.0" style="-fx-background-color: #718792; -fx-background-radius: 90;" styleClass="btnLogin" stylesheets="@../Css/style.css" text="Sign Up Here" textFill="#004c40">
+                        <Button fx:id="btnSignUp" layoutX="110.0" layoutY="490.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="28.0" prefWidth="112.0" style="-fx-background-color: #718792; -fx-background-radius: 90;" styleClass="btnLogin" stylesheets="@../Css/style.css" text="Sign Up Here" textFill="#004c40">
                             <font>
                                 <Font size="14.0" />
                             </font>
