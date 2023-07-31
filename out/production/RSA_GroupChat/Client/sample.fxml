@@ -34,6 +34,16 @@
                                 <Font name="Arial" size="17.0" />
                             </font>
                         </TextField>
+                        <Label fx:id="generatedPublicKey" layoutX="75.0" layoutY="270.0" opacity="0.0" text="" textFill="#6abf69">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="generatedPrivateKey" layoutX="75.0" layoutY="310.0" opacity="0.0" text="" textFill="#6abf69">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
 <!--                        <TextField fx:id="regEmail" layoutX="49.0" layoutY="226.0" prefHeight="34.0" prefWidth="233.0" promptText="Email" style="-fx-background-color: #455a64;" styleClass="txtFont" stylesheets="@../Css/style.css">-->
 <!--                            <font>-->
 <!--                                <Font name="Arial" size="17.0" />-->
@@ -160,7 +170,7 @@
                                 <Font size="28.0" />
                             </font>
                         </Label>
-                        <Label fx:id="loginNotifier" layoutX="70.0" layoutY="314.0" opacity="0.0" text="Username or password is incorrect" textFill="#ff5353">
+                        <Label fx:id="loginNotifier" layoutX="70.0" layoutY="314.0" opacity="0.0" text="Private key is incorrect" textFill="#ff5353">
                             <font>
                                 <Font name="Arial" size="13.0" />
                             </font>

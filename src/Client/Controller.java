@@ -18,6 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class Controller {
@@ -64,17 +65,31 @@ public class Controller {
     public static String n, d, e, fullName;
     public static ArrayList<User> loggedInUser = new ArrayList<>();
     public static ArrayList<User> users = new ArrayList<User>();
-    User testUser = new User();
-    User test1User = new User();
+    public Label generatedPublicKey;
+    public Label generatedPrivateKey;
+
+    public Controller() {
+        User guest = new User("Guest", 0, 0, 0);
+        users.add(guest);
+    }
 
     public void registration() {
         if (!regFirstName.getText().equalsIgnoreCase("")) {
+            int [] keys = generateKey();
             User newUser = new User();
             newUser.fullName = regFirstName.getText();
-
+            newUser.n = keys[0];
+            newUser.publicKey = keys[1];
+            newUser.privateKey = keys[2];
             users.add(newUser);
+
             goBack.setOpacity(1);
             success.setOpacity(1);
+            generatedPublicKey.setText("Public Key: {" + newUser.publicKey + ", " + newUser.n + "}");
+            generatedPrivateKey.setText("Private Key: {" + newUser.privateKey + ", " + newUser.n + "}");
+            generatedPublicKey.setOpacity(1);
+            generatedPrivateKey.setOpacity(1);
+
             makeDefault();
             if (controlRegLabel.getOpacity() == 1) {
                 controlRegLabel.setOpacity(0);
@@ -83,6 +98,84 @@ public class Controller {
             controlRegLabel.setOpacity(1);
             setOpacity(success, goBack);
         }
+    }
+
+    private int[] generateKey(){
+        int p = generateRandomPrimeNumber();
+        int q = generateRandomPrimeNumber();
+        int n = p * q;
+
+        while (!checkKey(n)){
+            p = generateRandomPrimeNumber();
+            q = generateRandomPrimeNumber();
+            n = p * q;
+        }
+
+        int phiN = (p - 1) * (q - 1);
+        int e = getE(phiN);
+        int d = getD(phiN, e);
+
+        return new int[]{n, e, d};
+    }
+
+    private int generateRandomPrimeNumber(){
+        Random random = new Random();
+        int prime = random.nextInt(100) + 1;
+
+        while (!isPrime(prime)){
+            prime = random.nextInt(100) + 1;
+        }
+        return prime;
+    }
+
+    private boolean isPrime(int num){
+        if(num <= 1){
+            return false;
+        }
+        for (int i = 2; i < Math.sqrt(num); i++) {
+            if(num % i == 0){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean checkKey(int n){
+        for (User user : users){
+            if (user.n == n){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private int getE(int phiN){
+        int e = 0;
+        for (int i = 2; i < phiN; i++) {
+            if(gcd(i, phiN) == 1){
+                e = i;
+                break;
+            }
+        }
+        return e;
+    }
+
+    private int gcd(int num1, int num2) {
+        if (num2 == 0) {
+            return num1;
+        }
+        return gcd(num2, num1 % num2);
+    }
+
+    private int getD(int phiN, int e){
+        int d = 0;
+        for (int i = 0; i <= phiN; i++) {
+            if(i * e % phiN == 1){
+                d = i;
+                break;
+            }
+        }
+        return d;
     }
 
     private void setOpacity(Label a, Label b) {
@@ -104,17 +197,17 @@ public class Controller {
 
 
     public void login() {
-        testUser.fullName = "Amr Mahmoud";
-        testUser.n = 77;
-        testUser.privateKey = 43;
-        testUser.publicKey = 7;
-        users.add(testUser);
-
-        test1User.fullName = "Ahmed Bass";
-        test1User.n = 33;
-        test1User.privateKey = 7;
-        test1User.publicKey = 3;
-        users.add(test1User);
+//        testUser.fullName = "Amr Mahmoud";
+//        testUser.n = 77;
+//        testUser.privateKey = 43;
+//        testUser.publicKey = 7;
+//        users.add(testUser);
+//
+//        test1User.fullName = "Ahmed Bass";
+//        test1User.n = 33;
+//        test1User.privateKey = 7;
+//        test1User.publicKey = 3;
+//        users.add(test1User);
 
         d = privateKey.getText().replaceAll(" ", "").split(",")[0];
         n = privateKey.getText().replaceAll(" ", "").split(",")[1];

@@ -105,7 +105,7 @@ public class Room extends Thread implements Initializable {
                 System.out.println(cmd);
                 StringBuilder fulmsg = new StringBuilder();
                 for(int i = 1; i < tokens.length; i++) {
-                    fulmsg.append(tokens[i] + " ");
+                    fulmsg.append(tokens[i]).append(" ");
                 }
                 fulmsg.trimToSize();
                 System.out.println("Full msg: " + fulmsg);
@@ -169,14 +169,16 @@ public class Room extends Thread implements Initializable {
 
     public void send() {
         String msg = msgField.getText();
-        System.out.println("Message: " + msg);
-        writer.println(Controller.fullName.split(" ")[0] + "{" + Controller.e + "," + Controller.n + "}: " + msg + " (Encrypted)");
-        msgRoom.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
-        msgRoom.appendText("Me: " + msg + "\n");
-        msgField.setText("");
-        keyField.setText("");
-        if(msg.equalsIgnoreCase("BYE") || (msg.equalsIgnoreCase("logout"))) {
-            System.exit(0);
+        if(!msg.isEmpty()){
+            System.out.println("Message: " + msg);
+            writer.println(Controller.fullName.split(" ")[0] + "{" + Controller.e + "," + Controller.n + "}: " + msg + " (Encrypted)");
+            msgRoom.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+            msgRoom.appendText("Me: " + msg + "\n");
+            msgField.setText("");
+            keyField.setText("");
+            if(msg.equalsIgnoreCase("BYE") || (msg.equalsIgnoreCase("logout"))) {
+                System.exit(0);
+            }
         }
     }
 
@@ -226,7 +228,7 @@ public class Room extends Thread implements Initializable {
 //            proImage.setImage(image);
 //        }
         showProPic.setFill(new ImagePattern(image));
-        clientName.setText(Controller.fullName);
+        clientName.setText(Controller.fullName.split(" ")[0]);
         connectSocket();
     }
 }
