@@ -1,7 +1,5 @@
 package Client;
 
-import Server.ClientHandler;
-import Server.Server;
 import animatefx.animation.FadeIn;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -32,46 +29,23 @@ public class Controller {
     public Button getStarted;
     @FXML
     public ImageView btnBack;
-//    @FXML
-//    public TextField regName;
-//    @FXML
-//    public TextField regPass;
-//    @FXML
-//    public TextField regEmail;
     @FXML
     public TextField regFirstName;
-//    @FXML
-//    public TextField regPhoneNo;
-//    @FXML
-//    public RadioButton male;
-//    @FXML
-//    public RadioButton female;
     @FXML
     public Label controlRegLabel;
     @FXML
     public Label success;
     @FXML
     public Label goBack;
-//    @FXML
-//    public TextField userName;
     @FXML
     public TextField privateKey;
     @FXML
     public Label loginNotifier;
-//    @FXML
-//    public Label nameExists;
-//    @FXML
-//    public Label checkEmail;
     public static String n, d, e, fullName;
     public static ArrayList<User> loggedInUser = new ArrayList<>();
     public static ArrayList<User> users = new ArrayList<User>();
     public Label generatedPublicKey;
     public Label generatedPrivateKey;
-
-    public Controller() {
-        User guest = new User("Guest", 0, 0, 0);
-        users.add(guest);
-    }
 
     public void registration() {
         if (!regFirstName.getText().equalsIgnoreCase("")) {
