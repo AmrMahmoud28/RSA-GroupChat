@@ -43,8 +43,6 @@ public class Room extends Thread implements Initializable {
     @FXML
     public Label privateKey;
     @FXML
-    public Label gender;
-    @FXML
     public Pane profile;
     @FXML
     public Button profileBtn;
